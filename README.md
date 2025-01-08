@@ -66,7 +66,7 @@ tracked_symbols = [
 ### 💫 Run Application
 
 ```bash
-python3 b20.py
+python3 run.py
 ```
 
 ## 🎮 Controls
