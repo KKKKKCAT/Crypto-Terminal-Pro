@@ -9,7 +9,8 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square&logo=mit)](https://opensource.org/licenses/MIT)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square&logo=github)](http://makeapullrequest.com)
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg?style=flat-square&logo=github)](https://github.com/KKKKKCAT/crypto-terminal-pro)
-[![Github Stars](https://img.shields.io/github/stars/KKKKKCAT/crypto-terminal-pro?style=flat-square&logo=github)](https://github.com/KKKKKCAT/crypto-terminal-pro/stargazers)
+[![Github Stars](https://img.shields.io/github/stars/KKKKKCAT/Crypto-Terminal-Pro?style=flat-square&logo=github)](https://github.com/KKKKKCAT/Crypto-Terminal-Pro/stargazers)
+
 
 [![Telegram Chat](https://img.shields.io/badge/Telegram-Chat-blue?style=flat-square&logo=telegram)](https://t.me/kkkkkcat)
 [![GitHub Issues](https://img.shields.io/github/issues/KKKKKCAT/crypto-terminal-pro?style=flat-square&logo=github)](https://github.com/KKKKKCAT/crypto-terminal-pro/issues)
