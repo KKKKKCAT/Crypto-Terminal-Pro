@@ -40,7 +40,7 @@ cd crypto-terminal-pro
 
 # Install dependencies
 pip install python-binance
-pip install okx-connector
+pip install python-okx
 pip install windows-curses  # Windows only
 ```
 
