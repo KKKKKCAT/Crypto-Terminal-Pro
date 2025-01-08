@@ -121,7 +121,7 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 ## 💫 Acknowledgments
 
 - [python-binance](https://github.com/sammchardy/python-binance)
-- [okx-connector](https://github.com/okx/okx-connector)
+- [okx-connector](https://github.com/okxapi/python-okx)
 - [curses](https://docs.python.org/3/library/curses.html)
 
 ## 📬 Contact
