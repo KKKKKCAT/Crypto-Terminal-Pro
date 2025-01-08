@@ -79,15 +79,12 @@ python3 b20.py
 ## 📊 Supported Markets
 
 ### 💎 Binance
-- `BTCUSDT` (Spot & Futures)
-- `ETHUSDT` (Spot)
-- `XRPUSDT` (Spot)
-- `PEPEUSDT` (Spot)
-- `BNBUSDT` (Spot)
-- `AI16ZUSDT` (Futures)
+- `Spot`
+- `Futures`
 
 ### 🌟 OKX
-- `BTC-USDT` (Spot)
+- `Spot`
+- `Futures`
 
 ## 🛠️ Development
 
