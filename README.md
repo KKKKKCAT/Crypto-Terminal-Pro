@@ -18,6 +18,10 @@
   <img src="https://github.com/KKKKKCAT/Crypto-Terminal-Pro/blob/main/assets/screenshot1.gif" alt="Demo Screenshot" width="800">
 </p>
 
+<p align="center">
+  <img src="https://github.com/KKKKKCAT/Crypto-Terminal-Pro/blob/main/assets/screenshot2.webp" alt="Demo Screenshot" width="800">
+</p>
+
 ## ✨ Highlights
 
 - 📊 Real-time crypto market data visualization
