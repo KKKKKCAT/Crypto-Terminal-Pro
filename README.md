@@ -39,8 +39,7 @@
 
 ```bash
 # Clone repository
-git clone https://github.com/KKKKKCAT/Crypto-Terminal-Pro.git
-cd Crypto-Terminal-Pro
+wget https://github.com/KKKKKCAT/Crypto-Terminal-Pro/Crypto-Terminal-Pro.py
 
 # Install dependencies
 pip install python-binance
@@ -66,7 +65,7 @@ tracked_symbols = [
 ### 💫 Run Application
 
 ```bash
-python3 run.py
+python3 Crypto-Terminal-Pro.py
 ```
 
 ## 🎮 Controls
