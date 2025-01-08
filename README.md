@@ -22,6 +22,11 @@
   <img src="https://github.com/KKKKKCAT/Crypto-Terminal-Pro/blob/main/assets/screenshot2.webp" alt="Demo Screenshot" width="800">
 </p>
 
+## README
+
+- [English](README.md) - [繁體中文](README_zh-TW.md) - [简体中文](README_zh-CN.md) - [日本語](README_ja.md) - [한국어](README_ko.md)
+
+
 ## ✨ Highlights
 
 - 📊 Real-time crypto market data visualization
