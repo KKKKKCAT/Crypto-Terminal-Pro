@@ -1,4 +1,3 @@
-```html
 <p align="center">
 <img src="https://raw.githubusercontent.com/KKKKKCAT/Crypto-Terminal-Pro/refs/heads/main/assets/Crypto-Terminal-Pro-logo.webp" alt="Crypto Terminal Pro" width="150">
 </p>
@@ -133,4 +132,4 @@ git push origin feature/amazing-feature
 
 ## Star 歷史記錄
 [![Star History Chart](https://api.star-history.com/svg?repos=KKKKKCAT/Crypto-Terminal-Pro&type=Date)](https://star-history.com/#KKKKKCAT/Crypto-Terminal-Pro&Date)
-```
+
