@@ -51,19 +51,16 @@ pip install windows-curses  # Windows only
 ### 🔧 Configuration
 
 ```python
-# Config settings in code
-CONFIG = {
-    'chart': {
-        'width': 20,
-        'height': 8,
-        'candles': 8,
-        'refresh_rate': 0.5
-    },
-    'layout': {
-        'padding': 70,
-        'items_per_column': 4
-    }
-}
+tracked_symbols = [
+ {"symbol": "BTCUSDT", "decimals": 2, "exchange": "binance", "market": "spot"}, 
+ {"symbol": "BTCUSDT", "decimals": 2, "exchange": "binance", "market": "futures"}, 
+ {"symbol": "BTC-USDT", "decimals": 2, "exchange": "okx", "market": "spot"},
+ {"symbol": "ETHUSDT", "decimals": 2, "exchange": "binance", "market": "spot"}, 
+ {"symbol": "XRPUSDT", "decimals": 5, "exchange": "binance", "market": "spot"}, 
+ {"symbol": "PEPEUSDT", "decimals": 8, "exchange": "binance", "market": "spot"}, 
+ {"symbol": "BNBUSDT", "decimals": 2, "exchange": "binance", "market": "spot"},
+ {"symbol": "AI16ZUSDT", "decimals": 5, "exchange": "binance", "market": "futures"}
+]
 ```
 
 ### 💫 Run Application
