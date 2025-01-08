@@ -38,7 +38,7 @@
 ### 📦 Installation
 
 ```bash
-wget https://github.com/KKKKKCAT/Crypto-Terminal-Pro/Crypto-Terminal-Pro.py
+wget https://raw.githubusercontent.com/KKKKKCAT/Crypto-Terminal-Pro/refs/heads/main/Crypto-Terminal-Pro.py
 
 # Install dependencies
 pip install python-binance
