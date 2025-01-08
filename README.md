@@ -1,5 +1,5 @@
 <p align="center">
-<img src="https://via.placeholder.com/100x100?text=CTP" alt="Crypto Terminal Pro" width="100">
+<img src="https://raw.githubusercontent.com/KKKKKCAT/Crypto-Terminal-Pro/refs/heads/main/assets/Crypto-Terminal-Pro-logo.webp" alt="Crypto Terminal Pro" width="100">
 </p>
 <h1 align="center">Crypto Terminal Pro</h1>
 
