@@ -38,7 +38,6 @@
 ### 📦 Installation
 
 ```bash
-# Download repository
 wget https://github.com/KKKKKCAT/Crypto-Terminal-Pro/Crypto-Terminal-Pro.py
 
 # Install dependencies
