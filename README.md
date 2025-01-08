@@ -8,7 +8,7 @@
 [![Python Version](https://img.shields.io/badge/python-3.9+-blue.svg?style=flat-square&logo=python)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square&logo=mit)](https://opensource.org/licenses/MIT)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square&logo=github)](http://makeapullrequest.com)
-[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg?style=flat-square&logo=github)](https://github.com/KKKKKCAT/crypto-terminal-pro)
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg?style=flat-square&logo=github)](https://github.com/KKKKKCAT/Crypto-Terminal-Pro)
 [![Github Stars](https://img.shields.io/github/stars/KKKKKCAT/Crypto-Terminal-Pro?style=flat-square&logo=github)](https://github.com/KKKKKCAT/Crypto-Terminal-Pro/stargazers)
 
 
@@ -35,8 +35,8 @@
 
 ```bash
 # Clone repository
-git clone https://github.com/KKKKKCAT/crypto-terminal-pro.git
-cd crypto-terminal-pro
+git clone https://github.com/KKKKKCAT/Crypto-Terminal-Pro.git
+cd Crypto-Terminal-Pro
 
 # Install dependencies
 pip install python-binance
@@ -94,7 +94,7 @@ python3 b20.py
 ```bash
 # Fork this repository
 # Clone your fork
-git clone https://github.com/YOUR_USERNAME/crypto-terminal-pro.git
+git clone https://github.com/YOUR_USERNAME/Crypto-Terminal-Pro.git
 
 # Create feature branch
 git checkout -b feature/amazing-feature
@@ -133,3 +133,6 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 ---
 
 <p align="center">Made with ❤️ by <a href="https://github.com/KKKKKCAT">KKKKKCAT</a></p>
+
+## Star History
+[![Star History Chart](https://api.star-history.com/svg?repos=KKKKKCAT/Crypto-Terminal-Pro&type=Date)](https://star-history.com/#KKKKKCAT/Crypto-Terminal-Pro&Date)
