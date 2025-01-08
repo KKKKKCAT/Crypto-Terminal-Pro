@@ -12,9 +12,7 @@
 [![Github Stars](https://img.shields.io/github/stars/KKKKKCAT/Crypto-Terminal-Pro?style=flat-square&logo=github)](https://github.com/KKKKKCAT/Crypto-Terminal-Pro/stargazers)
 
 
-[![Telegram Chat](https://img.shields.io/badge/Telegram-Chat-blue?style=flat-square&logo=telegram)](https://t.me/kkkkkcat)
-[![GitHub Issues](https://img.shields.io/github/issues/KKKKKCAT/crypto-terminal-pro?style=flat-square&logo=github)](https://github.com/KKKKKCAT/crypto-terminal-pro/issues)
-[![GitHub Pull Requests](https://img.shields.io/github/issues-pr/KKKKKCAT/crypto-terminal-pro?style=flat-square&logo=github)](https://github.com/KKKKKCAT/crypto-terminal-pro/pulls)
+[![Telegram group](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.swo.moe%2Fstats%2Ftelegram%2Fkkcatblog&query=count&color=2CA5E0&label=Telegram%20Group&logo=telegram&cacheSeconds=3600&style=flat-square)](https://t.me/kkcatblog) [![Telegram channel](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.swo.moe%2Fstats%2Ftelegram%2Fkkkkkcat&query=count&color=2CA5E0&label=Telegram%20Channel&logo=telegram&cacheSeconds=3600&style=flat-square)](https://t.me/kkkkkcat) [![X (Twitter)](https://img.shields.io/badge/any_text-Follow-blue?color=2CA5E0&label=Twitter&logo=X&cacheSeconds=3600&style=flat-square)](https://x.com/intent/follow?screen_name=kcat88888)
 
 <p align="center">
   <img src="https://via.placeholder.com/800x400?text=Terminal+Demo" alt="Demo Screenshot" width="800">
