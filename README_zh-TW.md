@@ -85,7 +85,7 @@ python3 Crypto-Terminal-Pro.py
 - `現貨交易`
 - `期貨交易`
 
-### 🥘 Bitget (v1.0.2 support)
+### 🥘 Bitget (v1.2.0 support)
 - `現貨交易`
 - `期貨交易`
 
