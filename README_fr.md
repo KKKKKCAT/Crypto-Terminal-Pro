@@ -85,7 +85,7 @@ python3 Crypto-Terminal-Pro.py
 - `Spot`
 - `Futures`
 
-### 🥘 Bitget (v1.0.2 support)
+### 🥘 Bitget (v1.2.0 support)
 - `Spot`
 - `Futures`
 
