@@ -85,6 +85,10 @@ python3 Crypto-Terminal-Pro.py
 - `現物`
 - `先物`
 
+### 🥘 Bitget (v1.0.2 support)
+- `現物`
+- `先物`
+
 ## 🛠️ 開発手順
 
 ```bash
