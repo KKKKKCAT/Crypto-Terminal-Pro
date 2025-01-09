@@ -85,6 +85,10 @@ python3 Crypto-Terminal-Pro.py
 - `현물`
 - `선물`
 
+### 🥘 Bitget (v1.0.2 support)
+- `현물`
+- `선물`
+
 ## 🛠️ 개발 가이드
 
 ```bash
