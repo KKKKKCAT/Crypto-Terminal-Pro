@@ -6,6 +6,17 @@ import okx.MarketData as MarketData
 from datetime import datetime, timedelta
 from functools import wraps
 
+tracked_symbols = [
+ {"symbol": "BTCUSDT", "decimals": 2, "exchange": "binance", "market": "spot"}, 
+ {"symbol": "BTCUSDT", "decimals": 2, "exchange": "binance", "market": "futures"}, 
+ {"symbol": "BTC-USDT", "decimals": 2, "exchange": "okx", "market": "spot"},
+ {"symbol": "ETHUSDT", "decimals": 2, "exchange": "binance", "market": "spot"}, 
+ {"symbol": "XRPUSDT", "decimals": 5, "exchange": "binance", "market": "spot"}, 
+ {"symbol": "PEPEUSDT", "decimals": 8, "exchange": "binance", "market": "spot"}, 
+ {"symbol": "BNBUSDT", "decimals": 2, "exchange": "binance", "market": "spot"},
+ {"symbol": "AI16ZUSDT", "decimals": 5, "exchange": "binance", "market": "futures"}
+]
+
 CONFIG = {
   'chart': {
       'width': 20,
@@ -23,17 +34,6 @@ CONFIG = {
       'neutral': curses.COLOR_WHITE
   }
 }
-
-tracked_symbols = [
- {"symbol": "BTCUSDT", "decimals": 2, "exchange": "binance", "market": "spot"}, 
- {"symbol": "BTCUSDT", "decimals": 2, "exchange": "binance", "market": "futures"}, 
- {"symbol": "BTC-USDT", "decimals": 2, "exchange": "okx", "market": "spot"},
- {"symbol": "ETHUSDT", "decimals": 2, "exchange": "binance", "market": "spot"}, 
- {"symbol": "XRPUSDT", "decimals": 5, "exchange": "binance", "market": "spot"}, 
- {"symbol": "PEPEUSDT", "decimals": 8, "exchange": "binance", "market": "spot"}, 
- {"symbol": "BNBUSDT", "decimals": 2, "exchange": "binance", "market": "spot"},
- {"symbol": "AI16ZUSDT", "decimals": 5, "exchange": "binance", "market": "futures"}
-]
 
 def retry_on_error(max_retries=3, delay=1):
   def decorator(func):
