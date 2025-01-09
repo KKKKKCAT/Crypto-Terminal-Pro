@@ -5,6 +5,7 @@ from binance.client import Client
 import okx.MarketData as MarketData
 from datetime import datetime, timedelta
 from functools import wraps
+import requests
 
 tracked_symbols = [
  {"symbol": "BTCUSDT", "decimals": 2, "exchange": "binance", "market": "spot"}, 
@@ -14,7 +15,7 @@ tracked_symbols = [
  {"symbol": "XRPUSDT", "decimals": 5, "exchange": "binance", "market": "spot"}, 
  {"symbol": "PEPEUSDT", "decimals": 8, "exchange": "binance", "market": "spot"}, 
  {"symbol": "BNBUSDT", "decimals": 2, "exchange": "binance", "market": "spot"},
- {"symbol": "AI16ZUSDT", "decimals": 5, "exchange": "binance", "market": "futures"}
+ {"symbol": "BTCUSDT", "decimals": 2, "exchange": "bitget", "market": "futures"},
 ]
 
 CONFIG = {
@@ -58,57 +59,108 @@ class CandleData:
       self.low = float(low_price)
       self.close = float(close_price)
       self.is_bullish = self.close >= self.open
+      
+class BitgetClient:
+    def __init__(self):
+        self.base_url = "https://api.bitget.com"
+        
+    def get_ticker(self, symbol, market='spot'):
+        if market == 'spot':
+            response = requests.get(f"{self.base_url}/api/v2/spot/market/tickers?symbol={symbol}")
+        else:
+            symbol = f"{symbol}_UMCBL"
+            response = requests.get(f"{self.base_url}/api/v2/mix/market/ticker?symbol={symbol}&productType=USDT-FUTURES")
+        return response.json()
+        
+    def get_order_book(self, symbol, market='spot'):
+        if market == 'spot':
+            response = requests.get(f"{self.base_url}/api/v2/spot/market/orderbook?symbol={symbol}&type=step0")
+        else:
+            response = requests.get(f"{self.base_url}/api/v2/mix/market/merge-depth?symbol={symbol}&productType=USDT-FUTURES")
+        return response.json()
+        
+    def get_klines(self, symbol, interval='1min', limit=30, market='spot'):
+        end_time = int(time.time() * 1000)
+        if market == 'spot':
+            response = requests.get(f"{self.base_url}/api/v2/spot/market/candles?symbol={symbol}&granularity={interval}&limit={limit}&endTime={end_time}")
+        else:
+            response = requests.get(f"{self.base_url}/api/v2/mix/market/candles?symbol={symbol}&granularity=1m&limit={limit}&endTime={end_time}&productType=USDT-FUTURES&kLineType=MARKET")
+        return response.json()
+
+    
+
 
 @retry_on_error()
 def get_candle_data(client, symbol, market, interval='1m', limit=30):
-  try:
-      if isinstance(client, MarketData.MarketAPI):
-          bars = client.get_candlesticks(
-              instId=symbol,
-              bar=interval,
-              limit=str(limit)
-          )
-          if bars and 'data' in bars:
-              candles = []
-              for bar in bars['data']:
-                  candles.append(CandleData(bar[1], bar[2], bar[3], bar[4]))
-              ticker = client.get_ticker(instId=symbol)
-              if ticker and 'data' in ticker:
-                  current_price = float(ticker['data'][0]['last'])
-                  if candles:
-                      last_candle = candles[-1]
-                      current_candle = CandleData(
-                          last_candle.close,
-                          max(last_candle.close, current_price),
-                          min(last_candle.close, current_price),
-                          current_price
-                      )
-                      candles.append(current_candle)
-              return candles
-      else:
-          if market == "futures":
-              klines = client.futures_klines(symbol=symbol, interval=interval, limit=limit)
-              ticker = client.futures_symbol_ticker(symbol=symbol)
-          else:
-              klines = client.get_klines(symbol=symbol, interval=interval, limit=limit-1)
-              ticker = client.get_symbol_ticker(symbol=symbol)
-              
-          current_price = float(ticker['price'])
-          candles = [CandleData(k[1], k[2], k[3], k[4]) for k in klines]
-          
-          if candles:
-              last_candle = candles[-1]
-              current_candle = CandleData(
-                  last_candle.close,
-                  max(last_candle.close, current_price),
-                  min(last_candle.close, current_price),
-                  current_price
-              )
-              candles.append(current_candle)
-          return candles
-  except Exception as e:
-      print(f"Candle error for {symbol}: {e}")
-      return []
+    try:
+        if isinstance(client, MarketData.MarketAPI):
+            bars = client.get_candlesticks(
+                instId=symbol,
+                bar=interval,
+                limit=str(limit)
+            )
+            if bars and 'data' in bars:
+                candles = []
+                for bar in bars['data']:
+                    candles.append(CandleData(bar[1], bar[2], bar[3], bar[4]))
+                ticker = client.get_ticker(instId=symbol)
+                if ticker and 'data' in ticker:
+                    current_price = float(ticker['data'][0]['last'])
+                    if candles:
+                        last_candle = candles[-1]
+                        current_candle = CandleData(
+                            last_candle.close,
+                            max(last_candle.close, current_price),
+                            min(last_candle.close, current_price),
+                            current_price
+                        )
+                        candles.append(current_candle)
+                return candles
+        elif isinstance(client, BitgetClient):
+           interval_map = {'1m': '1min', '5m': '5min', '15m': '15min'}
+           bitget_interval = interval_map.get(interval, '1min')
+           
+           klines = client.get_klines(symbol, interval=bitget_interval, limit=limit-1, market=market)
+           
+           if klines and 'data' in klines and klines['data']:
+               candles = []
+               for k in klines['data']:
+                   open_price = k[1]  
+                   high_price = k[2]
+                   low_price = k[3] 
+                   close_price = k[4]
+                   candle = CandleData(open_price, high_price, low_price, close_price)
+                   candles.append(candle)
+               
+               ticker = client.get_ticker(symbol, market=market)
+               return candles
+           return []
+        else:
+            if market == "futures":
+                klines = client.futures_klines(symbol=symbol, interval=interval, limit=limit)
+                ticker = client.futures_symbol_ticker(symbol=symbol)
+            else:
+                klines = client.get_klines(symbol=symbol, interval=interval, limit=limit-1)
+                ticker = client.get_symbol_ticker(symbol=symbol)
+                
+            current_price = float(ticker['price'])
+            candles = [CandleData(k[1], k[2], k[3], k[4]) for k in klines]
+            
+            if candles:
+                last_candle = candles[-1]
+                current_candle = CandleData(
+                    last_candle.close,
+                    max(last_candle.close, current_price),
+                    min(last_candle.close, current_price),
+                    current_price
+                )
+                candles.append(current_candle)
+            return candles
+    except Exception as e:
+        print(f"Candle error for {symbol}: {e}")
+        return []
+  
+  
 
 def draw_candlestick(candle, height, min_price, max_price, width=3):
   if max_price == min_price:
@@ -142,29 +194,40 @@ def draw_candlestick(candle, height, min_price, max_price, width=3):
 
 @retry_on_error()
 def get_order_book(client, symbol, market, limit=10):
-   try:
-       if isinstance(client, MarketData.MarketAPI):
-           book = client.get_orderbook(
-               instId=symbol,
-               sz=str(limit)
-           )
-           if book and 'data' in book and len(book['data']) > 0:
-               bids = book['data'][0]['bids'][:10]
-               asks = book['data'][0]['asks'][:10]
-               return bids, asks
-           return [], []
-       else:
-           if market == "futures":
-               futures_limit = 10
-               order_book = client.futures_order_book(symbol=symbol, limit=futures_limit)
-           else:
-               order_book = client.get_order_book(symbol=symbol, limit=limit)
-           bids = order_book["bids"][:10]
-           asks = order_book["asks"][:10]
-           return bids, asks
-   except Exception as e:
-       print(f"Order book error for {symbol} ({market}): {e}")
-       return [], []
+    try:
+        if isinstance(client, MarketData.MarketAPI):
+            book = client.get_orderbook(
+                instId=symbol,
+                sz=str(limit)
+            )
+            if book and 'data' in book and len(book['data']) > 0:
+                bids = book['data'][0]['bids'][:10]
+                asks = book['data'][0]['asks'][:10]
+                return bids, asks
+        elif isinstance(client, BitgetClient):
+            book = client.get_order_book(symbol, market=market)
+            if book and 'data' in book and book['data'] is not None:
+                if market == 'spot':
+                    bids = book['data']['bids'][:10]
+                    asks = book['data']['asks'][:10]
+                else:
+                    bids = [[str(bid[0]), str(bid[1])] for bid in book['data'].get('bids', [])][:10]
+                    asks = [[str(ask[0]), str(ask[1])] for ask in book['data'].get('asks', [])][:10]
+                return bids, asks
+            return [], []
+        else:
+            if market == "futures":
+                futures_limit = 10
+                order_book = client.futures_order_book(symbol=symbol, limit=futures_limit)
+            else:
+                order_book = client.get_order_book(symbol=symbol, limit=limit)
+            bids = order_book["bids"][:10]
+            asks = order_book["asks"][:10]
+            return bids, asks
+        return [], []
+    except Exception as e:
+        print(f"Order book error for {symbol} ({market}): {e}")
+        return [], []
 
 def draw_chart_section(pad, start_row, start_col, candles, symbol, decimals, exchange, market, chart_height=10):
     title = f"{exchange} {symbol} {market}"
@@ -251,6 +314,7 @@ def draw_ui(stdscr):
 
     binance_client = Client()
     okx_client = MarketData.MarketAPI(flag="0")
+    bitget_client = BitgetClient()
 
     chart_section_height = len(tracked_symbols[:8]) * (CONFIG['chart']['height'] + 3)
     author_box_height = 4
@@ -273,7 +337,7 @@ def draw_ui(stdscr):
                 exchange = item["exchange"]
                 market = item["market"]
 
-                client = okx_client if exchange == "okx" else binance_client
+                client = okx_client if exchange == "okx" else (bitget_client if exchange == "bitget" else binance_client)
                 if i < CONFIG['layout']['items_per_column']:
                     row = author_box_height + (i * (CONFIG['chart']['height'] + 3))
                     col = 0
@@ -287,7 +351,7 @@ def draw_ui(stdscr):
                     draw_chart_section(pad, row, col, candles, symbol, decimals, exchange, market, CONFIG['chart']['height'])
                     draw_order_book_section(pad, row, col + 30, symbol, bids, asks, decimals)
 
-            author_info = "│ Author: KKKKKCAT │ 🌟 Github: github.com/KKKKKCAT │ 📱 Telegram: @kkkkkcat │ 📦 v1.0.8 │"
+            author_info = "│ Author: KKKKKCAT │ 🌟 Github: github.com/KKKKKCAT │ 📱 Telegram: @kkkkkcat │ 📦 v1.2.0 │"
             box_width = len(author_info) + 3
             ref_info = "│ 🔗 Register Binance: https://accounts.binance.com/register?ref=MQIXZL5C".ljust(box_width - 2) + "│"
             box_top = "┌" + "─" * (box_width-2) + "┐"
@@ -323,3 +387,4 @@ def draw_ui(stdscr):
           
 if __name__ == "__main__":
   curses.wrapper(draw_ui)
+
