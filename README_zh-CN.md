@@ -85,6 +85,10 @@ python3 Crypto-Terminal-Pro.py
 - `现货交易`
 - `期货交易`
 
+### 🥘 Bitget (v1.0.2 support)
+- `现货交易`
+- `期货交易`
+
 ## 🛠️ 开发指引
 
 ```bash
