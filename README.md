@@ -62,7 +62,7 @@ tracked_symbols = [
  {"symbol": "XRPUSDT", "decimals": 5, "exchange": "binance", "market": "spot"}, 
  {"symbol": "PEPEUSDT", "decimals": 8, "exchange": "binance", "market": "spot"}, 
  {"symbol": "BNBUSDT", "decimals": 2, "exchange": "binance", "market": "spot"},
- {"symbol": "AI16ZUSDT", "decimals": 5, "exchange": "binance", "market": "futures"}
+ {"symbol": "BTCUSDT", "decimals": 2, "exchange": "bitget", "market": "futures"},
 ]
 ```
 
