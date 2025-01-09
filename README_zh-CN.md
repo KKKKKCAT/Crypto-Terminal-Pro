@@ -85,7 +85,7 @@ python3 Crypto-Terminal-Pro.py
 - `现货交易`
 - `期货交易`
 
-### 🥘 Bitget (v1.0.2 support)
+### 🥘 Bitget (v1.2.0 support)
 - `现货交易`
 - `期货交易`
 
